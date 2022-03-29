@@ -1,13 +1,14 @@
+import { Usuario } from "@prisma/client";
 import { ICriarUsuarioDTO } from "../dtos/ICriarUsuarioDTO";
 
 interface IUsuarioRepository {
-  criar(dados: ICriarUsuarioDTO);
-  procurarPorId(id: number); 
-  procurarPorNome(nome: string);
-  procurarPorEmail(email: string);
-  procurarPorRA(ra: string);
-  procurarPorTurma(turma: string);
-  procurarPorCurso(curso: string);
+  criar(dados: ICriarUsuarioDTO): Promise<void>;
+  procurarPorId(id: number): Promise<Usuario>; 
+  procurarPorNome(nome: string): Promise<Usuario>;
+  procurarPorEmail(email: string): Promise<Usuario>;
+  procurarPorRA(ra: string): Promise<Usuario>;
+  procurarPorTurma(turma: string): Promise<Usuario[]>;
+  procurarPorCurso(curso: string): Promise<Usuario[]>;
 }
 
-export { IUsuarioRepository };
+export {IUsuarioRepository};

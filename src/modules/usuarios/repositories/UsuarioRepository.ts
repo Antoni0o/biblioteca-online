@@ -14,7 +14,7 @@ class UsuarioRepository implements IUsuarioRepository {
     curso,
     ra,
     turma,
-  }: ICriarUsuarioDTO) {
+  }: ICriarUsuarioDTO): Promise<void> {
       await prismaClient.usuario.create({ data: {
         nome,
         email,
@@ -26,25 +26,25 @@ class UsuarioRepository implements IUsuarioRepository {
       }});
   }
 
-  async procurarPorId(id: number) {
+  async procurarPorId(id: number): Promise<Usuario> {
       const user = await prismaClient.usuario.findFirst({ where: {id} });
 
       return user;
   }
 
-  async procurarPorNome(nome: string) {
+  async procurarPorNome(nome: string): Promise<Usuario> {
       const user = await prismaClient.usuario.findFirst({ where: {nome} });
 
       return user;
   }
 
-  async procurarPorRA(ra: string) {
+  async procurarPorRA(ra: string): Promise<Usuario> {
     const user = await  prismaClient.usuario.findFirst({ where: {ra} });
     
     return user;
   }
 
-  async procurarPorEmail(email: string) {
+  async procurarPorEmail(email: string): Promise<Usuario> {
       const user = await prismaClient.usuario.findFirst({ where: {email} });
 
       return user;

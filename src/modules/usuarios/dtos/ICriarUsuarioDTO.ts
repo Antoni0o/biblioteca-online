@@ -1,4 +1,3 @@
-
 interface ICriarUsuarioDTO {
   nome: string;
   senha: string;

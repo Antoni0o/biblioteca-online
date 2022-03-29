@@ -27,7 +27,7 @@ model Usuario {
     nome  String
     email String
     senha String
-    admin Boolean?
+    admin Boolean? @default(false)
     ra    String?
     turma String?
     curso String?
