@@ -9,6 +9,7 @@ datasource db {
 
 model Livro {
     id          Int      @id @default(autoincrement())
+    capa_url    String
     titulo      String
     autor       String
     qtd_paginas String

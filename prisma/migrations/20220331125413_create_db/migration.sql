@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Livro" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "capa_url" TEXT NOT NULL,
     "titulo" TEXT NOT NULL,
     "autor" TEXT NOT NULL,
     "qtd_paginas" TEXT NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE "Usuario" (
     "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "senha" TEXT NOT NULL,
-    "admin" BOOLEAN,
+    "admin" BOOLEAN DEFAULT false,
     "ra" TEXT,
     "turma" TEXT,
     "curso" TEXT
