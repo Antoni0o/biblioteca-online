@@ -1,14 +1,14 @@
 -- CreateTable
 CREATE TABLE "Livro" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "capa_url" TEXT NOT NULL,
+    "capa_url" TEXT,
     "titulo" TEXT NOT NULL,
     "autor" TEXT NOT NULL,
-    "qtd_paginas" TEXT NOT NULL,
+    "qtd_paginas" INTEGER NOT NULL,
     "isbn" TEXT NOT NULL,
     "genero" TEXT NOT NULL,
-    "curtidas" INTEGER NOT NULL,
-    "disponivel" BOOLEAN NOT NULL,
+    "curtidas" INTEGER DEFAULT 0,
+    "disponivel" BOOLEAN DEFAULT true,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL
 );

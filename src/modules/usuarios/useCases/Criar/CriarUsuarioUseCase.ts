@@ -1,8 +1,11 @@
+import { Usuario } from "@prisma/client";
 import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../shared/errors/AppError";
 import { ICriarUsuarioDTO } from "../../dtos/ICriarUsuarioDTO";
+import { IUsuarioResponseDTO } from "../../dtos/IUsuarioResponseDTO";
+import { UsuarioMap } from "../../mappers/UsuarioMap";
 import { IUsuarioRepository } from "../../repositories/IUsuarioRepository";
 
 @injectable()
@@ -20,7 +23,8 @@ class CriarUsuarioUseCase {
     ra,
     curso,
     turma
-  }: ICriarUsuarioDTO): Promise<void> {
+  }: ICriarUsuarioDTO): Promise<IUsuarioResponseDTO> {
+    let user: Usuario;
     const usuarioExiste = await this.usuarioRepository.procurarPorEmail(email);
 
     if(usuarioExiste) {
@@ -30,14 +34,14 @@ class CriarUsuarioUseCase {
     const hashSenha = await hash(senha, 8);
 
     if(admin) {
-      await this.usuarioRepository.criar({
+      user = await this.usuarioRepository.criar({
         nome,
         email,
         senha: hashSenha,
         admin
       });
     } else {
-      await this.usuarioRepository.criar({
+      user = await this.usuarioRepository.criar({
         nome, 
         email,
         senha: hashSenha,
@@ -46,6 +50,8 @@ class CriarUsuarioUseCase {
         turma
       });
     }
+
+    return UsuarioMap.paraDTO(user);
   }
 }
 

@@ -2,7 +2,7 @@ import { Usuario } from "@prisma/client";
 import { ICriarUsuarioDTO } from "../dtos/ICriarUsuarioDTO";
 
 interface IUsuarioRepository {
-  criar(dados: ICriarUsuarioDTO): Promise<void>;
+  criar(dados: ICriarUsuarioDTO): Promise<Usuario>;
   procurarPorId(id: number): Promise<Usuario>; 
   procurarPorNome(nome: string): Promise<Usuario>;
   procurarPorEmail(email: string): Promise<Usuario>;

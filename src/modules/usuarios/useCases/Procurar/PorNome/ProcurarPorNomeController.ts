@@ -9,11 +9,11 @@ class ProcurarPorNomeController {
 
     const procurarPorNomeUseCase = container.resolve(ProcurarPorNomeUseCase);
 
-    const useCase = await procurarPorNomeUseCase.execute({
+    const response = await procurarPorNomeUseCase.execute({
       nome
     });
     
-    return res.status(201).json(useCase);
+    return res.status(201).json(response);
   }
 }
 

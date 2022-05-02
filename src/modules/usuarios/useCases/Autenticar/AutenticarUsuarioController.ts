@@ -7,9 +7,9 @@ class AutenticarUsuarioController {
   async handle(req: Request, res: Response): Promise<Response> {
     const { email, senha } = req.body;
 
-    const useCase = container.resolve(AutenticarUsuarioUseCase);
+    const autenticarUsuarioUseCase = container.resolve(AutenticarUsuarioUseCase);
 
-    const token = await useCase.execute({
+    const token = await autenticarUsuarioUseCase.execute({
       email,
       senha
     })

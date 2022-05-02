@@ -14,8 +14,8 @@ class UsuarioRepository implements IUsuarioRepository {
     curso,
     ra,
     turma,
-  }: ICriarUsuarioDTO): Promise<void> {
-      await prismaClient.usuario.create({ data: {
+  }: ICriarUsuarioDTO): Promise<Usuario> {
+      const user = await prismaClient.usuario.create({ data: {
         nome,
         email,
         senha,
@@ -24,6 +24,8 @@ class UsuarioRepository implements IUsuarioRepository {
         ra,
         turma,
       }});
+
+      return user;
   }
 
   async procurarPorId(id: number): Promise<Usuario> {
