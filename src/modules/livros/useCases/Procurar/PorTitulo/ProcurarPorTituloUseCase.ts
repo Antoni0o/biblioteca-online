@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../../shared/errors/AppError";
+import { IUsuarioRepository } from "../../../../usuarios/repositories/IUsuarioRepository";
 import { LivroMap } from "../../../mappers/LivroMap";
 import { ILivrosRepository } from "../../../repositories/ILivrosRepository";
 
@@ -8,7 +9,7 @@ import { ILivrosRepository } from "../../../repositories/ILivrosRepository";
 class ProcurarPorTituloUseCase {
   constructor(
     @inject("LivrosRepository")
-    private livrosRepository: ILivrosRepository
+    private livrosRepository: ILivrosRepository,
   ) {}
 
   async execute(titulo: string) {
