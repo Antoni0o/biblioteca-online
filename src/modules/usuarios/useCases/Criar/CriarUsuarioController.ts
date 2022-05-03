@@ -9,8 +9,6 @@ class CriarUsuarioController {
 
     const criarUsuarioUseCase = container.resolve(CriarUsuarioUseCase);
 
-    console.log(request);
-
     await criarUsuarioUseCase.execute({
       ...request
     });

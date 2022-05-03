@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { container } from "tsyringe";
 
+import { AuthRequest } from "../../../../@types/express";
 import { EditarLivroUseCase } from "./EditarLivroUseCase";
 
 class EditarLivroController {
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: AuthRequest, res: Response): Promise<Response> {
     const { id } = req.params;
     const {autor, genero, isbn, qtd_paginas, titulo} = req.body; 
 

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
-import { AppError } from "../errors/AppError";
-import auth from "../config/auth";
-import { AuthRequest } from "../@types/express";
+import { AppError } from "../../errors/AppError"; 
+import auth from "../../../utils/auth"; 
+import { AuthRequest } from "../../../@types/express"; 
 
 export async function ensureAuthentication(req: AuthRequest, res: Response, next: NextFunction) {
   const authRequest = req.headers.authorization;

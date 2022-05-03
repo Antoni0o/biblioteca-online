@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { container } from "tsyringe";
 
+import { AuthRequest } from "../../../../../@types/express";
 import { ProcurarPorTituloUseCase } from "./ProcurarPorTituloUseCase";
 
 class ProcurarPorTituloController {
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: AuthRequest, res: Response): Promise<Response> {
     const { titulo } = req.params;
 
     const procurarPorTituloUseCase = container.resolve(ProcurarPorTituloUseCase);

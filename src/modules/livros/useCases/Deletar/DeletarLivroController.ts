@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { container } from "tsyringe";
+import { AuthRequest } from "../../../../@types/express";
 
 import { DeletarLivroUseCase } from "./DeletarLivroUseCase";
 
 class DeletarLivroController {
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: AuthRequest, res: Response): Promise<Response> {
     const deletarLivroUseCase = container.resolve(DeletarLivroUseCase);
 
     await deletarLivroUseCase.execute(req.body);

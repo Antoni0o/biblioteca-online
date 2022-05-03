@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { container } from "tsyringe";
 
+import { AuthRequest } from "../../../../@types/express";
 import { CriarLivroUseCase } from "./CriarLivroUseCase";
 
 class CriarLivroController {
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: AuthRequest, res: Response): Promise<Response> {
     const request = req.body;
 
     const criarLivroUseCase = container.resolve(CriarLivroUseCase);
