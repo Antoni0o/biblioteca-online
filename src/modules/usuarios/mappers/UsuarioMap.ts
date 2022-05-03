@@ -1,6 +1,7 @@
-import { IUsuarioResponseDTO } from "../dtos/IUsuarioResponseDTO";
 import { Usuario } from '@prisma/client';
 import { classToClass } from "class-transformer";
+
+import { IUsuarioResponseDTO } from "../dtos/IUsuarioResponseDTO";
 
 class UsuarioMap {
   static paraDTO({

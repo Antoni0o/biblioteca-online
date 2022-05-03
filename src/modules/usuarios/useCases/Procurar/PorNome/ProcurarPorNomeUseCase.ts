@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+
 import { AppError } from "../../../../../shared/errors/AppError";
 import { IProcurarUsuarioDTO } from "../../../dtos/IProcurarUsuarioDTO";
 import { IUsuarioResponseDTO } from "../../../dtos/IUsuarioResponseDTO";

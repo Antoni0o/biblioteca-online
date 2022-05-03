@@ -1,6 +1,8 @@
 import { Livro } from '@prisma/client';
 import { classToClass } from "class-transformer";
 
+import { ILivroReponseDTO } from '../dtos/ILivroResponseDTO';
+
 class LivroMap {
   static paraDTO({
     isbn,

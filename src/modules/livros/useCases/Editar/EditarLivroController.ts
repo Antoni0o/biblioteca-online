@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { ICriarLivroDTO } from "../../dtos/ICriarLivroDTO";
+
 import { EditarLivroUseCase } from "./EditarLivroUseCase";
 
 class EditarLivroController {

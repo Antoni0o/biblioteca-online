@@ -1,6 +1,7 @@
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
+
 import { AppError } from "../../../../shared/errors/AppError";
 import auth from "../../../../utils/auth";
 import { IUsuarioRepository } from "../../repositories/IUsuarioRepository";

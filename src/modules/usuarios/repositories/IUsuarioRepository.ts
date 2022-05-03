@@ -1,4 +1,5 @@
 import { Usuario } from "@prisma/client";
+
 import { ICriarUsuarioDTO } from "../dtos/ICriarUsuarioDTO";
 
 interface IUsuarioRepository {

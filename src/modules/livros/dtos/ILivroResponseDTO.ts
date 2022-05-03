@@ -8,3 +8,5 @@ interface ILivroReponseDTO {
   curtidas: number;
   disponivel: boolean;
 }
+
+export { ILivroReponseDTO };
