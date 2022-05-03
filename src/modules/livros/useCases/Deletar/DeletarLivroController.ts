@@ -7,7 +7,7 @@ import { DeletarLivroUseCase } from "./DeletarLivroUseCase";
 class DeletarLivroController {
   async handle(req: AuthRequest, res: Response): Promise<Response> {
     const { id: user_id } = req.user;
-    const { id } = req.body;
+    const { id } = req.params;
     const deletarLivroUseCase = container.resolve(DeletarLivroUseCase);
 
     await deletarLivroUseCase.execute(Number(user_id), Number(id));

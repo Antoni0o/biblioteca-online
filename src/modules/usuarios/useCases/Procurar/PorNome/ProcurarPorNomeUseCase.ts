@@ -9,7 +9,7 @@ import { IUsuarioRepository } from "../../../repositories/IUsuarioRepository";
 @injectable()
 class ProcurarPorNomeUseCase {
   constructor(
-    @inject("UsuarioRepository")
+    @inject("UsuariosRepository")
     private usuarioRepository: IUsuarioRepository
   ) {}
 

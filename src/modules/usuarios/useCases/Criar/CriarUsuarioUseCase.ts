@@ -11,7 +11,7 @@ import { IUsuarioRepository } from "../../repositories/IUsuarioRepository";
 @injectable()
 class CriarUsuarioUseCase {
   constructor(
-    @inject("UsuarioRepository")
+    @inject("UsuariosRepository")
     private usuarioRepository: IUsuarioRepository
   ) {}
 

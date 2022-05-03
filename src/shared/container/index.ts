@@ -7,7 +7,7 @@ import { IUsuarioRepository } from "../../modules/usuarios/repositories/IUsuario
 import { UsuarioRepository } from "../../modules/usuarios/repositories/UsuarioRepository";
 
 container.registerSingleton<IUsuarioRepository>(
-  "UsuarioRepository",
+  "UsuariosRepository",
   UsuarioRepository
 );
 

@@ -5,6 +5,7 @@ import { ILivroReponseDTO } from '../dtos/ILivroResponseDTO';
 
 class LivroMap {
   static paraDTO({
+    id,
     isbn,
     titulo,
     autor,
@@ -15,6 +16,7 @@ class LivroMap {
     disponivel,
   }: Livro): ILivroReponseDTO {
     const livro = classToClass({
+      id,
       isbn,
       titulo,
       autor,

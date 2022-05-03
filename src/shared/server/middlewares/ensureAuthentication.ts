@@ -9,7 +9,7 @@ export async function ensureAuthentication(req: AuthRequest, res: Response, next
   const authRequest = req.headers.authorization;
 
   if(!authRequest) {
-    throw new AppError("You must have logged in to use this function!", 400)
+    throw new AppError("Você precisa estar logado para utilizar essa funcionalidade!", 400)
   }
 
   const [, token] = authRequest.split(" ");

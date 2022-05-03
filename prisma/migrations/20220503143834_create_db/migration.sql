@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE "Livro" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "capa_url" TEXT,
+    "capa_url" TEXT DEFAULT 'http://localhost:4000/capa/null.png',
     "titulo" TEXT NOT NULL,
     "autor" TEXT NOT NULL,
     "qtd_paginas" INTEGER NOT NULL,

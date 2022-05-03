@@ -9,7 +9,7 @@ datasource db {
 
 model Livro {
     id          Int      @id @default(autoincrement())
-    capa_url    String?
+    capa_url    String?  @default("http://localhost:4000/capa/null.png")
     titulo      String
     autor       String
     qtd_paginas Int

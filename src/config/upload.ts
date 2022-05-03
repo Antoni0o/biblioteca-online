@@ -1,19 +1,11 @@
-import crypto from "crypto";
 import multer from "multer";
-import { resolve } from "path";
 
-const tmpFolder = resolve(__dirname, "..", "..", "livros");
-
-export default {
-  tmpFolder,
-
-  storage: multer.diskStorage({
-    destination: tmpFolder,
-    filename: (request, file, callback) => {
-      const fileHash = crypto.randomBytes(16).toString("hex");
-      const fileName = `${fileHash}-${file.originalname}`;
-
-      return callback(null, fileName);
-    },
-  }),
-};
+export const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'books/');
+  },
+  filename: (req, file, cb) => {
+    const filename = Date.now()+'-'+file.originalname;
+    return cb(null, filename);
+  }
+});

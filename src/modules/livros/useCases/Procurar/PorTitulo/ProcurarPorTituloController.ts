@@ -10,7 +10,7 @@ class ProcurarPorTituloController {
 
     const procurarPorTituloUseCase = container.resolve(ProcurarPorTituloUseCase);
 
-    const useCase = procurarPorTituloUseCase.execute(titulo);
+    const useCase = await procurarPorTituloUseCase.execute(titulo);
 
     return res.status(200).json(useCase);
   }

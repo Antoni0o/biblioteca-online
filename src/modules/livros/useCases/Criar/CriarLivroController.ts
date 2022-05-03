@@ -11,7 +11,7 @@ class CriarLivroController {
 
     const criarLivroUseCase = container.resolve(CriarLivroUseCase);
 
-    const livro = criarLivroUseCase.execute(Number(user_id), request);
+    const livro = await criarLivroUseCase.execute(Number(user_id), request);
 
     return res.status(201).json(livro)
   }

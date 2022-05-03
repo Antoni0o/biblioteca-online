@@ -5,14 +5,18 @@ import prismaClient from "../../../../prisma";
 
 import { AppError } from "../../../../shared/errors/AppError";
 import { IUsuarioRepository } from "../../../usuarios/repositories/IUsuarioRepository";
-import { ICriarLivroDTO } from "../../dtos/ICriarLivroDTO";
 import { LivroMap } from "../../mappers/LivroMap";
 import { ILivrosRepository } from "../../repositories/ILivrosRepository";
+
+interface ILivrosRequest {
+  id: number;
+  capa_url: string
+}
 
 dayjs.extend(utc);
 
 @injectable()
-class EditarLivroUseCase {
+class AtualizarCapaUseCase {
   constructor(
     @inject("LivrosRepository")
     private livrosRepository: ILivrosRepository,
@@ -20,42 +24,32 @@ class EditarLivroUseCase {
     private usuariosRepository: IUsuarioRepository
   ) {}
 
-  async execute(user_id: number, id: number, {
-    autor,
-    genero,
-    isbn,
-    qtd_paginas,
-    titulo
-  }: ICriarLivroDTO) {
+  async execute(user_id: number, {id, capa_url}: ILivrosRequest) {
     const usuario = await this.usuariosRepository.procurarPorId(user_id);
-    const livro = await this.livrosRepository.procurarPorId(id);
-    
+    const livro = await this.livrosRepository.procurarPorId(id)
+
     if(!usuario.admin) {
-      throw new AppError("Este usuário não pode editar livros!", 400)
+      throw new AppError("Este usuário não pode atualizar uma capa!", 400);
     }
 
     if(!livro) {
-      throw new AppError("Este livro não existe!", 404);
+      throw new AppError("Livro não encontrado", 404);
     }
 
     const dateNow = dayjs().utc(true).format();
 
-    const resultado = await prismaClient.livro.update({ 
+    const livroAtualizado = await prismaClient.livro.update({
       where: {
         id
       },
       data: {
-        autor: autor === "" ? livro.autor : autor,
-        genero: genero === "" ? livro.genero : genero,
-        isbn: isbn === "" ? livro.isbn : isbn,
-        qtd_paginas: qtd_paginas === 0 || !qtd_paginas ? livro.qtd_paginas : qtd_paginas,
-        titulo: titulo === "" ? livro.titulo : titulo,
+        capa_url,
         updated_at: dateNow
-      } 
+      }
     });
-      
-    return LivroMap.paraDTO(resultado);
+
+    return LivroMap.paraDTO(livroAtualizado)
   }
 }
 
-export { EditarLivroUseCase };
+export { AtualizarCapaUseCase }
