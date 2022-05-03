@@ -26,29 +26,6 @@ class LivrosRepository implements ILivrosRepository {
       return livro;
   }
 
-  async editar(id: number, {
-    autor,
-    genero,
-    isbn,
-    qtd_paginas,
-    titulo
-  }: ICriarLivroDTO): Promise<Livro> {
-    const livro = await prismaClient.livro.update({ 
-      where: {
-        id
-      },
-      data: {
-        autor,
-        genero,
-        isbn,
-        qtd_paginas,
-        titulo
-      } 
-    });
-    
-    return livro;
-  }
-
   async deletar(id: number): Promise<void> {
     await prismaClient.livro.delete({ where: { id } });
   }
