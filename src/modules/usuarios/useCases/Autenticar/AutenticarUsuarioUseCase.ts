@@ -59,9 +59,7 @@ class AutenticarUsuarioUseCase {
       delete usuario.ra;
       delete usuario.turma;
       delete usuario.senha;
-      delete usuario.id;
     } else {
-      delete usuario.id;
       delete usuario.senha;
     }
 
