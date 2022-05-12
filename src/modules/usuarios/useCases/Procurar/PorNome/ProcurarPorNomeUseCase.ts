@@ -1,3 +1,4 @@
+import { Usuario } from "@prisma/client";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../../shared/errors/AppError";
@@ -15,20 +16,26 @@ class ProcurarPorNomeUseCase {
 
   async execute({
     nome
-  }: IProcurarUsuarioDTO): Promise<IUsuarioResponseDTO> {
-    const usuario = await this.usuarioRepository.procurarPorNome(nome);
+  }: IProcurarUsuarioDTO): Promise<IUsuarioResponseDTO[]> {
+    const usuarios = await this.usuarioRepository.procurarPorNome(nome);
 
-    if(!usuario) {
+    if(!usuarios) {
       throw new AppError("O usuário não foi encontrado!", 404);
     }
     
-    if(usuario.admin) {
-      delete usuario.ra;
-      delete usuario.turma;
-      delete usuario.curso;
-    }
+    let users: IUsuarioResponseDTO[] = [];
 
-    return UsuarioMap.paraDTO(usuario);
+    usuarios.map(usuario => {
+      if(usuario.admin) {
+        delete usuario.ra;
+        delete usuario.turma;
+        delete usuario.curso;
+      }
+
+      users = [UsuarioMap.paraDTO(usuario)]
+    })
+
+    return users;
   } 
 }
 
