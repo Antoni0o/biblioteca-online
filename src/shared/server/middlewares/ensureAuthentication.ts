@@ -18,7 +18,7 @@ export async function ensureAuthentication(req: AuthRequest, res: Response, next
     const { sub: id } = verify(token, auth.jwt.secret);
 
     req.user = {
-      id: String(id),
+      id: Number(id),
     };
 
     next();

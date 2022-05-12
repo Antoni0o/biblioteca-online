@@ -28,16 +28,22 @@ class UsuarioRepository implements IUsuarioRepository {
       return user;
   }
 
+  async procurarTodos(): Promise<Usuario[]> {
+    const users = await prismaClient.usuario.findMany();
+
+    return users;
+  }
+
   async procurarPorId(id: number): Promise<Usuario> {
       const user = await prismaClient.usuario.findFirst({ where: {id} });
 
       return user;
   }
 
-  async procurarPorNome(nome: string): Promise<Usuario> {
-      const user = await prismaClient.usuario.findFirst({ where: {nome} });
+  async procurarPorNome(nome: string): Promise<Usuario[]> {
+      const users = await prismaClient.usuario.findMany({ where: {nome} });
 
-      return user;
+      return users;
   }
 
   async procurarPorRA(ra: string): Promise<Usuario> {

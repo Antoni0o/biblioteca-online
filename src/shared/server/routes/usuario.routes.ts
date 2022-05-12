@@ -14,7 +14,8 @@ const autenticarUsuarioController = new AutenticarUsuarioController();
 const procurarPorIdComTokenController = new ProcurarPorIdComTokenController();
 
 usuarioRouter.post("/", criarUsuarioController.handle);
-usuarioRouter.get("/", ensureAuthentication, procurarPorIdComTokenController.handle)
+usuarioRouter.get("/", ensureAuthentication, procurarPorIdComTokenController.handle);
+usuarioRouter.get("/all", ensureAuthentication, procurarPorIdComTokenController.handle)
 usuarioRouter.post("/login", autenticarUsuarioController.handle);
 usuarioRouter.get("/:nome", procurarUsuarioPorNomeController.handle);
 
