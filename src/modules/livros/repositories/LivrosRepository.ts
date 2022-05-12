@@ -30,6 +30,11 @@ class LivrosRepository implements ILivrosRepository {
     await prismaClient.livro.delete({ where: { id } });
   }
 
+  async procurarTodos(): Promise<Livro[]> {
+    const books = await prismaClient.livro.findMany();
+    return books;
+  }
+
   async procurarPorId(id: number): Promise<Livro> {
     const book = await prismaClient.livro.findFirst({ where: { id } });
     return book;

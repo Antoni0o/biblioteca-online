@@ -7,6 +7,7 @@ import { CriarLivroController } from '../../../modules/livros/useCases/Criar/Cri
 import { DeletarLivroController } from '../../../modules/livros/useCases/Deletar/DeletarLivroController';
 import { EditarLivroController } from '../../../modules/livros/useCases/Editar/EditarLivroController';
 import { ProcurarPorTituloController } from '../../../modules/livros/useCases/Procurar/PorTitulo/ProcurarPorTituloController';
+import { ProcurarTodosController } from '../../../modules/livros/useCases/Procurar/ProcurarTodos/ProcurarTodosController';
 import { ensureAuthentication } from '../middlewares/ensureAuthentication';
 
 const livroRouter = Router();
@@ -17,8 +18,10 @@ const deletarLivroController = new DeletarLivroController();
 const editarLivroController = new EditarLivroController();
 const procurarPorTituloController = new ProcurarPorTituloController();
 const autalizarCapaController = new AtualizarCapaController();
+const procurarTodosController = new ProcurarTodosController();
 
 livroRouter.post("/", ensureAuthentication, criarLivroController.handle);
+livroRouter.get("/all", ensureAuthentication, procurarTodosController.handle);
 livroRouter.delete("/:id", ensureAuthentication, deletarLivroController.handle);
 livroRouter.put("/:id", ensureAuthentication, editarLivroController.handle);
 livroRouter.patch("/capa/:id", ensureAuthentication, upload.single('img'), autalizarCapaController.handle);

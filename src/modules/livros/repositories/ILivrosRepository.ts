@@ -5,6 +5,7 @@ import { ICriarLivroDTO } from '../dtos/ICriarLivroDTO';
 interface ILivrosRepository {
   criar(dados: ICriarLivroDTO): Promise<Livro>;
   deletar(id: number): Promise<void>;
+  procurarTodos(): Promise<Livro[]>;
   procurarPorId(id: number): Promise<Livro>; 
   procurarPorTitulo(titulo: string): Promise<Livro>;
   procurarPorGenero(genero: string): Promise<Livro[]>;
