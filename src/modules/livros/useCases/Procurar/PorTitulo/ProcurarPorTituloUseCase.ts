@@ -12,13 +12,19 @@ class ProcurarPorTituloUseCase {
   ) {}
 
   async execute(titulo: string) {
-    const livro = await this.livrosRepository.procurarPorTitulo(titulo);
+    const livros = await this.livrosRepository.procurarPorTitulo(titulo);
 
-    if(!livro) {
+    if(!livros) {
       throw new AppError("O livro não foi encontrado!", 404);
     }
 
-    return LivroMap.paraDTO(livro);
+    let livrosMapeados: LivroMap[] = [];
+
+    livros.map(livro => {
+      livrosMapeados.push(LivroMap.paraDTO(livro));
+    })
+
+    return livrosMapeados;
   }
 }
 

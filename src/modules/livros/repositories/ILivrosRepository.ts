@@ -7,10 +7,10 @@ interface ILivrosRepository {
   deletar(id: number): Promise<void>;
   procurarTodos(): Promise<Livro[]>;
   procurarPorId(id: number): Promise<Livro>; 
-  procurarPorTitulo(titulo: string): Promise<Livro>;
+  procurarPorTitulo(titulo: string): Promise<Livro[]>;
   procurarPorGenero(genero: string): Promise<Livro[]>;
   procurarPorAutor(autor: string): Promise<Livro[]>;
-  procurarPorIsbn(isbn: string): Promise<Livro>;
+  procurarPorIsbn(isbn: string): Promise<Livro[]>;
 }
 
 export {ILivrosRepository};

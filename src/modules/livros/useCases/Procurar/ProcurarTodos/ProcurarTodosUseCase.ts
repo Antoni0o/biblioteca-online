@@ -18,13 +18,13 @@ class ProcurarTodosUseCase {
       throw new AppError("Os livro não foram encontrados!", 404);
     }
 
-    let books: LivroMap[] = [];
+    let livrosMapeados: LivroMap[] = [];
 
     livros.map(livro => {
-      books.push(LivroMap.paraDTO(livro));
+      livrosMapeados.push(LivroMap.paraDTO(livro));
     })
 
-    return books;
+    return livrosMapeados;
   }
 }
 

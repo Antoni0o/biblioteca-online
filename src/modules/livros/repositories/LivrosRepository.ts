@@ -36,27 +36,27 @@ class LivrosRepository implements ILivrosRepository {
   }
 
   async procurarPorId(id: number): Promise<Livro> {
-    const book = await prismaClient.livro.findFirst({ where: { id } });
-    return book;
+    const books = await prismaClient.livro.findFirst({ where: { id } });
+    return books;
   }
 
-  async procurarPorTitulo(titulo: string): Promise<Livro> {
-    const book = await prismaClient.livro.findFirst({ where: { titulo } });
-    return book;
+  async procurarPorTitulo(titulo: string): Promise<Livro[]> {
+    const books = await prismaClient.livro.findMany({ where: { titulo: { contains: titulo } } });
+    return books;
   }
 
-  async procurarPorIsbn(isbn: string): Promise<Livro> {
-    const book = await prismaClient.livro.findFirst({ where: { isbn } });
-    return book;
+  async procurarPorIsbn(isbn: string): Promise<Livro[]> {
+    const books = await prismaClient.livro.findMany({ where: { isbn: { contains: isbn } } });
+    return books;
   }
 
   async procurarPorAutor(autor: string): Promise<Livro[]> {
-    const books = await prismaClient.livro.findMany({ where: { autor } });
+    const books = await prismaClient.livro.findMany({ where: { autor: { contains: autor } } });
     return books;
   }
 
   async procurarPorGenero(genero: string): Promise<Livro[]> {
-    const books = await prismaClient.livro.findMany({ where: { genero } });
+    const books = await prismaClient.livro.findMany({ where: { genero: { contains: genero } } });
     return books;
   }
   
