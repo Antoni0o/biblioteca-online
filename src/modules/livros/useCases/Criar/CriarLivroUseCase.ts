@@ -24,17 +24,21 @@ class CriarLivroUseCase {
   }: ICriarLivroDTO) {
     const usuario = await this.usuariosRepository.procurarPorId(user_id);
     const livroJaExisteISBN = await this.livrosRepository.procurarPorIsbn(isbn);
-    const livroJaExisteTitulo = await this.livrosRepository.procurarPorTitulo(titulo);
+    let livro;
     
     if(!usuario.admin) {
       throw new AppError("Este usuário não pode criar livros!", 400)
     }
 
-    if(livroJaExisteISBN || livroJaExisteTitulo) {
-      throw new AppError("Este livro já existe!", 400)
+    if(!titulo || !autor || !genero || !isbn || !qtd_paginas) {
+      throw new AppError("Você precisa colocar todos os dados para criar um livro!", 400);
+    }
+    
+    if(livroJaExisteISBN) {
+      throw new AppError("Este livro já existe!", 400);
     }
 
-    const livro = await this.livrosRepository.criar({
+    livro = await this.livrosRepository.criar({
       autor,
       genero,
       isbn,

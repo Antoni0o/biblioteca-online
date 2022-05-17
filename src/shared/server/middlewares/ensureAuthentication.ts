@@ -6,13 +6,13 @@ import auth from "../../../utils/auth";
 import { AuthRequest } from "../../../@types/express"; 
 
 export async function ensureAuthentication(req: AuthRequest, res: Response, next: NextFunction) {
-  const authRequest = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-  if(!authRequest) {
-    throw new AppError("Você precisa estar logado para utilizar essa funcionalidade!", 400)
+  if(!authHeader) {
+    throw new AppError("Você precisa estar logado para utilizar essa funcionalidade!", 401)
   }
 
-  const [, token] = authRequest.split(" ");
+  const [, token] = authHeader.split(" ");
 
   try {
     const { sub: id } = verify(token, auth.jwt.secret);
@@ -22,7 +22,7 @@ export async function ensureAuthentication(req: AuthRequest, res: Response, next
     };
 
     next();
-  } catch {
-    throw new AppError("Your access was invalidated! - Invalid Token", 400)
+  } catch(err) {
+    throw new AppError(`Token Inválido, ${err.message}`, 401)
   }
 }

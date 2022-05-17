@@ -45,9 +45,9 @@ class LivrosRepository implements ILivrosRepository {
     return books;
   }
 
-  async procurarPorIsbn(isbn: string): Promise<Livro[]> {
-    const books = await prismaClient.livro.findMany({ where: { isbn: { contains: isbn } } });
-    return books;
+  async procurarPorIsbn(isbn: string): Promise<Livro> {
+    const book = await prismaClient.livro.findFirst({ where: { isbn: isbn } });
+    return book;
   }
 
   async procurarPorAutor(autor: string): Promise<Livro[]> {
