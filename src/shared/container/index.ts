@@ -1,5 +1,7 @@
 import { container } from "tsyringe";
 
+import "./providers"
+
 import { ILivrosRepository } from "../../modules/livros/repositories/ILivrosRepository";
 import { LivrosRepository } from "../../modules/livros/repositories/LivrosRepository";
  
